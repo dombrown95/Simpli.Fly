@@ -1,11 +1,11 @@
 import React from 'react';
+import Hero from '../components/Hero/Hero';
 
 function HomePage() {
     return (
         <div>
+            <Hero />
             <section>
-                <h2>Welcome to Simpli.Fly</h2>
-                <p>View and edit your inventory easily.</p>
             </section>
 
         </div>   
