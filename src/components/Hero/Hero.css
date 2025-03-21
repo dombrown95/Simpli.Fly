@@ -1,3 +1,10 @@
+.hero {
+    background-color: #0d6efd;
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }
+
 .hero-heading {
     margin-top: 0;
     font-size: 3rem;
