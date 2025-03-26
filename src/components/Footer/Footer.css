@@ -1,10 +1,18 @@
 .footer {
-    background-color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 1.5;
-    border-top: 5px solid black;
-    border-bottom: 5px solid black;
-  }
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.5;
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
