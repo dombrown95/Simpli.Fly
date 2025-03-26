@@ -30,7 +30,6 @@ function HomePage() {
     <div>
       <NavBar />
       <Hero />
-
       <section>
         <CargoSelector
           selectedCargo={cargoType}
@@ -52,13 +51,14 @@ function HomePage() {
 
               {/* Right column for cargo summary */}
               <div className="col-md-6 mb-4">
-                <h5>Current Cargo Weight: {currentWeight}kg / {cargoLimit}kg</h5>
-                <ul className="list-group mt-3">
-                  {items.map((item) => (
-                    <li
+                <div className="item-form">
+                  <h5>Current Cargo Weight: {currentWeight}kg / {cargoLimit}kg</h5>
+                  <ul className="list-group mt-3">
+                    {items.map((item) => (
+                      <li
                       key={item.id}
                       className="list-group-item d-flex justify-content-between align-items-start"
-                    >
+                      >
                       <div>
                         <strong>{item.name}</strong>
                         {item.description && (
@@ -76,6 +76,7 @@ function HomePage() {
                     </li>
                   ))}
                 </ul>
+              </div>
               </div>
             </div>
           </section>

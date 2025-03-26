@@ -1,6 +1,9 @@
 .navbar-main {
     color: white;
     text-align: center;
-    padding: 10px;
     margin-bottom: 10px;
+}
+
+.me-auto navbar-nav{
+    margin-left: 50px;
 }
