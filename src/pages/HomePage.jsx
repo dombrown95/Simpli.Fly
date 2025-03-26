@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import NavBar from '../components/NavBar/NavBar';
+import AboutUs from '../components/AboutUs/AboutUs';
 import Hero from '../components/Hero/Hero';
 import Footer from '../components/Footer/Footer';
 import CargoSelector from '../components/CargoSelector/CargoSelector';
@@ -43,6 +44,7 @@ function HomePage() {
     <div>
       <NavBar />
       <Hero />
+      <AboutUs />
       <section>
         <CargoSelector
           selectedCargo={cargoType}
