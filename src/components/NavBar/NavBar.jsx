@@ -6,12 +6,12 @@ import './NavBar.css';
 
 function NavBar() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-light" variant="light">
       <Container className ="navbar-main">
         <Navbar.Brand href="#home">Simpli.Fly</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="ms-auto">
             <Nav.Link href="#home">About Us</Nav.Link>
             <Nav.Link href="#link">Inventory Management</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
