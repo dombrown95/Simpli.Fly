@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import NavBar from '../components/NavBar/NavBar';
 import Hero from '../components/Hero/Hero';
 import Footer from '../components/Footer/Footer';
 import CargoSelector from '../components/CargoSelector/CargoSelector';
@@ -27,6 +28,7 @@ function HomePage() {
 
   return (
     <div>
+      <NavBar />
       <Hero />
 
       <section>
