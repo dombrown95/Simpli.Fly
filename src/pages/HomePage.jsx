@@ -9,6 +9,7 @@ function HomePage() {
   const [cargoType, setCargoType] = useState(null);
   const [cargoLimit, setCargoLimit] = useState(0);
   const [items, setItems] = useState([]);
+  const [editingItem, setEditingItem] = useState(null);
 
   const handleCargoSelect = (option) => {
     setCargoType(option.value);
@@ -18,6 +19,18 @@ function HomePage() {
 
   const handleAddItem = (item) => {
     setItems([...items, item]);
+  };
+
+  const handleEditItem = (item) => {
+    setEditingItem(item);
+  };
+
+  const handleUpdateItem = (updatedItem) => {
+    const updatedItems = items.map((item) =>
+      item.id === updatedItem.id ? updatedItem : item
+    );
+    setItems(updatedItems);
+    setEditingItem(null);
   };
 
   const handleDeleteItem = (id) => {
@@ -44,6 +57,9 @@ function HomePage() {
               <div className="col-md-6 mb-4">
                 <InventoryForm
                   onAddItem={handleAddItem}
+                  onUpdateItem={handleUpdateItem}
+                  editingItem={editingItem}
+                  setEditingItem={setEditingItem}
                   cargoLimit={cargoLimit}
                   currentWeight={currentWeight}
                 />
@@ -66,13 +82,10 @@ function HomePage() {
                         )}
                         <div className="text-muted small">{item.weight}kg</div>
                       </div>
-
-                      <button
-                        className="btn btn-sm btn-outline-danger"
-                        onClick={() => handleDeleteItem(item.id)}
-                      >
-                        Delete
-                      </button>
+                      <div className="d-flex gap-2">
+                      <button className="btn btn-sm btn-outline-primary" onClick={() => handleEditItem(item)}>Edit</button>
+                      <button className="btn btn-sm btn-outline-danger" onClick={() => handleDeleteItem(item.id)}>Delete</button>
+                      </div>
                     </li>
                   ))}
                 </ul>

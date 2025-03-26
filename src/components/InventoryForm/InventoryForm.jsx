@@ -1,46 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './InventoryForm.css';
 
-function InventoryForm({ onAddItem, cargoLimit, currentWeight }) {
+function InventoryForm({ onAddItem, onUpdateItem, editingItem, setEditingItem, cargoLimit, currentWeight }) {
     const [name, setName] = useState('');
     const [weight, setWeight] = useState('');
     const [description, setDescription] = useState('');
     const [error, setError] = useState('');
+
+    useEffect(() => {
+      if (editingItem) {
+        setName(editingItem.name);
+        setWeight(editingItem.weight);
+        setDescription(editingItem.description || '');
+      }
+    }, [editingItem]);
   
     const handleSubmit = (e) => {
       e.preventDefault();
-  
       const weightValue = parseFloat(weight);
-  
+    
       if (!name || !weight) {
         setError('Please enter a name and weight for your item.');
         return;
       }
-  
+    
       if (isNaN(weightValue) || weightValue <= 0) {
         setError('The weight of your item must be a positive number.');
         return;
       }
-  
-      const newTotal = currentWeight + weightValue;
-  
+    
+      const newTotal = currentWeight - (editingItem?.weight || 0) + weightValue;
       if (newTotal > cargoLimit) {
         setError(`If you add this item, you will exceed your cargo limit of ${cargoLimit}kg.`);
         return;
       }
-  
+    
       const newItem = {
-        id: Date.now(),
+        id: editingItem ? editingItem.id : Date.now(),
         name,
         weight: weightValue,
         description,
       };
-  
-      onAddItem(newItem);
+    
+      if (editingItem) {
+        onUpdateItem(newItem);
+      } else {
+        onAddItem(newItem);
+      }
+    
       setName('');
       setWeight('');
       setDescription('');
       setError('');
+      setEditingItem(null);
     };
   
     return (
@@ -80,9 +92,8 @@ function InventoryForm({ onAddItem, cargoLimit, currentWeight }) {
               rows="2"
             />
           </div>
-  
           <button type="submit" className="btn btn-success">
-            Add Item
+            {editingItem ? 'Update Item' : 'Add Item'}
           </button>
         </form>
       </div>
