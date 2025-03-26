@@ -8,7 +8,10 @@ function NavBar() {
   return (
     <Navbar expand="lg" className="bg-light" variant="light">
       <Container className ="navbar-main">
-        <Navbar.Brand href="#home">Simpli.Fly</Navbar.Brand>
+      <Navbar.Brand href="#home" className="d-flex align-items-center">
+      <img src="/assets/images/LogoImage.png" alt="Simpli.Fly Logo" width="30" height="30" className="d-inline-block align-top me-2"/>
+      Simpli.Fly
+      </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
