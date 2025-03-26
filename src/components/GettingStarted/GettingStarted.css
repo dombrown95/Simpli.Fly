@@ -1,0 +1,19 @@
+.get-started {
+    background-color: #e8f0fe;
+    padding: 30px;
+    border-radius: 8px;
+    height: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .get-heading {
+    font-size: 1.75rem;
+    color: #0d6efd;
+    margin-bottom: 15px;
+  }
+  
+  .get-text {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+  }

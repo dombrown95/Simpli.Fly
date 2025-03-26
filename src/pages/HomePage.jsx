@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import NavBar from '../components/NavBar/NavBar';
-import AboutUs from '../components/AboutUs/AboutUs';
+import NavBar from '../components/NavBar/NavBar'
 import Hero from '../components/Hero/Hero';
+import AboutUs from '../components/AboutUs/AboutUs';
+import GettingStarted from '../components/GettingStarted/GettingStarted';
 import Footer from '../components/Footer/Footer';
 import CargoSelector from '../components/CargoSelector/CargoSelector';
 import InventoryForm from '../components/InventoryForm/InventoryForm';
@@ -44,7 +45,16 @@ function HomePage() {
     <div>
       <NavBar />
       <Hero />
-      <AboutUs />
+      <div className="container my-3">
+        <div className="row">
+          <div className="col-md-6">
+            <AboutUs />
+          </div>
+          <div className="col-md-6">
+            <GettingStarted />
+          </div>
+        </div>
+      </div>
       <section>
         <CargoSelector
           selectedCargo={cargoType}
