@@ -13,8 +13,10 @@ function GettingStarted() {
         <li>Enter a unique username and password.</li>
         <li>Select your cargo size and get going!</li>
       </ol>
-      <a href="#cargo" className="btn btn-primary mt-3">Register</a>
-      <a href="#cargo" className="btn btn-primary mt-3">Login</a>
+      <div className="d-flex justify-content-center gap-3 mt-4">
+        <a href="#cargo" className="btn btn-primary btn-lg custom-btn">Register</a>
+        <a href="#cargo" className="btn btn-primary btn-lg custom-btn">Login</a>
+      </div>
     </div>
   );
 }

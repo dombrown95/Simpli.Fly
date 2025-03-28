@@ -16,7 +16,7 @@ function HomePage() {
   const handleCargoSelect = (option) => {
     setCargoType(option.value);
     setCargoLimit(option.limit);
-    setItems([]); // Reset items when user changes cargo type.
+    setItems([]);
   };
 
   const handleAddItem = (item) => {
