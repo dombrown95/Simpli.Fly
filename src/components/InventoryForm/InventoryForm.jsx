@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './InventoryForm.css';
+import axios from 'axios';
 
 function InventoryForm({ onAddItem, onUpdateItem, editingItem, setEditingItem, cargoLimit, currentWeight }) {
     const [name, setName] = useState('');

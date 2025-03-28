@@ -48,6 +48,41 @@ app.get('/api/inventory/:userId', (req, res) => {
   });
 });
 
+app.post('/api/inventory', (req, res) => {
+    const { userId, name, weight, description } = req.body;
+    const stmt = db.prepare('INSERT INTO inventory (user_id, name, weight, description) VALUES (?, ?, ?, ?)');
+    try {
+      stmt.run(userId, name, weight, description);
+      res.status(201).send({ message: 'Item added successfully' });
+    } catch (err) {
+      res.status(500).send({ error: 'Database error' });
+    }
+  });
+
+app.put('/api/inventory/:id', (req, res) => {
+    const { id } = req.params;
+    const { userId, name, weight, description } = req.body;
+    const stmt = db.prepare('UPDATE inventory SET name = ?, weight = ?, description = ? WHERE id = ? AND user_id = ?');
+    try {
+      stmt.run(name, weight, description, id, userId);
+      res.status(200).send({ message: 'Item updated successfully' });
+    } catch (err) {
+      res.status(500).send({ error: 'Database error' });
+    }
+  });
+
+app.delete('/api/inventory/:id', (req, res) => {
+    const { id } = req.params;
+    const { userId } = req.body;
+    const stmt = db.prepare('DELETE FROM inventory WHERE id = ? AND user_id = ?');
+    try {
+      stmt.run(id, userId);
+      res.status(200).send({ message: 'Item deleted successfully' });
+    } catch (err) {
+      res.status(500).send({ error: 'Database error' });
+    }
+  });
+
 app.listen(5000, () => {
     console.log('Server running on port 5000');
   });

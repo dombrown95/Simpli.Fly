@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import NavBar from '../components/NavBar/NavBar';
 import Hero from '../components/Hero/Hero';
 import CargoSelector from '../components/CargoSelector/CargoSelector';
@@ -13,8 +14,19 @@ function CargoPage() {
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem('username');
-    setUsername(storedUsername);
+    const fetchInventory = async () => {
+      const userId = localStorage.getItem('userId');
+      if (userId) {
+        try {
+          const response = await axios.get(`/api/inventory/${userId}`);
+          setItems(response.data);
+        } catch (error) {
+          console.error('Error fetching inventory:', error);
+        }
+      }
+    };
+  
+    fetchInventory();
   }, []);
 
   const handleCargoSelect = (option) => {
@@ -23,24 +35,42 @@ function CargoPage() {
     setItems([]);
   };
 
-  const handleAddItem = (item) => {
-    setItems([...items, item]);
+  const handleAddItem = async (item) => {
+    const userId = localStorage.getItem('userId');
+    try {
+      await axios.post('/api/inventory', { userId, ...item });
+      setItems([...items, item]);
+    } catch (error) {
+      console.error('Error adding item:', error);
+    }
   };
 
   const handleEditItem = (item) => {
     setEditingItem(item);
   };
 
-  const handleUpdateItem = (updatedItem) => {
-    const updatedItems = items.map((item) =>
-      item.id === updatedItem.id ? updatedItem : item
-    );
-    setItems(updatedItems);
-    setEditingItem(null);
+  const handleUpdateItem = async (updatedItem) => {
+    const userId = localStorage.getItem('userId');
+    try {
+      await axios.put(`/api/inventory/${updatedItem.id}`, { userId, ...updatedItem });
+      const updatedItems = items.map((item) =>
+        item.id === updatedItem.id ? updatedItem : item
+      );
+      setItems(updatedItems);
+      setEditingItem(null);
+    } catch (error) {
+      console.error('Error updating item:', error);
+    }
   };
 
-  const handleDeleteItem = (id) => {
-    setItems(items.filter((item) => item.id !== id));
+  const handleDeleteItem = async (id) => {
+    const userId = localStorage.getItem('userId');
+    try {
+      await axios.delete(`/api/inventory/${id}`, { data: { userId } });
+      setItems(items.filter((item) => item.id !== id));
+    } catch (error) {
+      console.error('Error deleting item:', error);
+    }
   };
 
   const currentWeight = items.reduce((total, item) => total + item.weight, 0);
