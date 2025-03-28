@@ -1,7 +1,7 @@
 import React from 'react';
 import './GettingStarted.css';
 
-function GettingStarted({ onRegisterClick }) {
+function GettingStarted({ onRegisterClick, onLoginClick }) {
   return (
     <div className="get-started">
       <h2 className="get-heading">Getting Started</h2>
@@ -15,7 +15,7 @@ function GettingStarted({ onRegisterClick }) {
       </ol>
       <div className="d-flex justify-content-center gap-3 mt-4">
         <button className="btn btn-primary btn-lg custom-btn" onClick={onRegisterClick}>Register</button>
-        <a href="#cargo" className="btn btn-primary btn-lg custom-btn">Login</a>
+        <button className="btn btn-primary btn-lg custom-btn" onClick={onLoginClick}>Login</button>
       </div>
     </div>
   );
