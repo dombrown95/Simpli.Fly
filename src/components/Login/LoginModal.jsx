@@ -19,6 +19,7 @@ function LoginModal({ show, handleClose }) {
     try {
       const response = await loginUser({ username, password });
       console.log(response.message);
+      localStorage.setItem('username', username);
       resetForm();
       handleClose();
       navigate('/cargo');

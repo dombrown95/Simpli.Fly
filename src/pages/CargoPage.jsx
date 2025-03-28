@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar/NavBar';
 import Hero from '../components/Hero/Hero';
 import CargoSelector from '../components/CargoSelector/CargoSelector';
@@ -10,6 +10,12 @@ function CargoPage() {
   const [cargoLimit, setCargoLimit] = useState(0);
   const [items, setItems] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    setUsername(storedUsername);
+  }, []);
 
   const handleCargoSelect = (option) => {
     setCargoType(option.value);
@@ -43,10 +49,18 @@ function CargoPage() {
     <div>
       <NavBar />
       <Hero />
+      
+      {username && (
+        <div className="text-center my-3">
+          <h5 className="text-success">Logged in as: {username}</h5>
+        </div>
+      )}
+
       <CargoSelector
         selectedCargo={cargoType}
         onSelectCargo={handleCargoSelect}
       />
+
       {cargoType && (
         <section className="container mt-4">
           <div className="row justify-content-center align-items-start">

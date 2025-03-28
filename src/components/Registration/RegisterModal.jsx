@@ -8,6 +8,13 @@ function RegisterModal({ show, handleClose }) {
   const [message, setMessage] = useState('');
   const [variant, setVariant] = useState('');
 
+  const resetForm = () => {
+    setUsername('');
+    setPassword('');
+    setMessage('');
+    setVariant('');
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -18,8 +25,8 @@ function RegisterModal({ show, handleClose }) {
       setMessage(response.data.message);
       setVariant('success');
       setTimeout(() => {
+        resetForm();
         handleClose();
-        setMessage('');
       }, 2000);
     } catch (error) {
       setMessage(error.response?.data?.error || 'Registration failed');
@@ -27,8 +34,13 @@ function RegisterModal({ show, handleClose }) {
     }
   };
 
+  const handleModalClose = () => {
+    resetForm();
+    handleClose();
+  };
+
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={handleModalClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>Register</Modal.Title>
       </Modal.Header>
