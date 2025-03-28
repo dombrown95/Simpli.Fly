@@ -29,3 +29,31 @@ export const fetchInventory = async (userId) => {
   }
 };
 
+export const addItem = async (itemData) => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}/inventory`, itemData);
+      return response.data;
+    } catch (error) {
+      throw error.response.data.error;
+    }
+  };
+  
+  export const updateItem = async (itemId, itemData) => {
+    try {
+      const response = await axios.put(`${API_BASE_URL}/inventory/${itemId}`, itemData);
+      return response.data;
+    } catch (error) {
+      throw error.response.data.error;
+    }
+  };
+  
+  export const deleteItem = async (itemId, userId) => {
+    try {
+      const response = await axios.delete(`${API_BASE_URL}/inventory/${itemId}`, {
+        data: { userId }
+      });
+      return response.data;
+    } catch (error) {
+      throw error.response.data.error;
+    }
+  };

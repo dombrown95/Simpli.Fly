@@ -37,16 +37,18 @@ app.post('/api/login', (req, res) => {
     res.status(200).send({ message: 'Login successful', userId: user.id });
   });
 
-app.get('/api/inventory/:userId', (req, res) => {
-  const { userId } = req.params;
-  db.all('SELECT * FROM inventory WHERE user_id = ?', [userId], (err, rows) => {
-    if (err) {
-      res.status(500).send({ error: 'Database error' });
-    } else {
+  app.get('/api/inventory/:userId', (req, res) => {
+    const { userId } = req.params;
+  
+    try {
+      const stmt = db.prepare('SELECT * FROM inventory WHERE user_id = ?');
+      const rows = stmt.all(userId);
       res.status(200).json(rows);
+    } catch (err) {
+      console.error('Database fetch error:', err);
+      res.status(500).send({ error: 'Database error' });
     }
   });
-});
 
 app.post('/api/inventory', (req, res) => {
     const { userId, name, weight, description } = req.body;

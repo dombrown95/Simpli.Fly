@@ -19,6 +19,7 @@ function LoginModal({ show, handleClose }) {
     try {
       const response = await loginUser({ username, password });
       localStorage.setItem('userId', response.userId);
+      localStorage.setItem('username', username);
       resetForm();
       handleClose();
       navigate('/cargo');
@@ -44,7 +45,7 @@ function LoginModal({ show, handleClose }) {
             <Form.Label>Username</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter username"
+              placeholder="Enter your username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -55,7 +56,7 @@ function LoginModal({ show, handleClose }) {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Password"
+              placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
