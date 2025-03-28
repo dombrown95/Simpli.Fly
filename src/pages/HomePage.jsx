@@ -4,13 +4,18 @@ import Hero from '../components/Hero/Hero';
 import AboutUs from '../components/AboutUs/AboutUs';
 import GettingStarted from '../components/GettingStarted/GettingStarted';
 import Footer from '../components/Footer/Footer';
-import RegisterModal from '../components/Registration/RegisterModal'; // Add your modal import
+import RegisterModal from '../components/Registration/RegisterModal';
+import LoginModal from '../components/Login/LoginModal';
 
 function HomePage() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const handleShow = () => setShowRegisterModal(true);
   const handleClose = () => setShowRegisterModal(false);
+
+  const handleLoginShow = () => setShowLoginModal(true);
+  const handleLoginClose = () => setShowLoginModal(false);
 
   return (
     <div>
@@ -22,11 +27,15 @@ function HomePage() {
             <AboutUs />
           </div>
           <div className="col-md-6 d-flex">
-            <GettingStarted onRegisterClick={handleShow} /> {/* Pass function */}
+            <GettingStarted
+              onRegisterClick={handleShow}
+              onLoginClick={handleLoginShow}
+            />
           </div>
         </div>
       </div>
       <RegisterModal show={showRegisterModal} handleClose={handleClose} />
+      <LoginModal show={showLoginModal} handleClose={handleLoginClose} />
       <Footer />
     </div>
   );

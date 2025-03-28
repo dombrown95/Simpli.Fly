@@ -1,22 +1,30 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Alert } from 'react-bootstrap';
+import axios from 'axios';
 
 function RegisterModal({ show, handleClose }) {
-  const [userData, setUserData] = useState({
-    username: '',
-    password: '',
-    email: '',
-  });
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [variant, setVariant] = useState('');
 
-  const handleChange = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    console.log(userData);
-    handleClose();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/register', {
+        username,
+        password,
+      });
+      setMessage(response.data.message);
+      setVariant('success');
+      setTimeout(() => {
+        handleClose();
+        setMessage('');
+      }, 2000);
+    } catch (error) {
+      setMessage(error.response?.data?.error || 'Registration failed');
+      setVariant('danger');
+    }
   };
 
   return (
@@ -25,39 +33,26 @@ function RegisterModal({ show, handleClose }) {
         <Modal.Title>Register</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        {message && <Alert variant={variant}>{message}</Alert>}
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formUsername">
+          <Form.Group controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter username"
-              name="username"
-              value={userData.username}
-              onChange={handleChange}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </Form.Group>
 
-          <Form.Group controlId="formEmail" className="mt-3">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              name="email"
-              value={userData.email}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
-
-          <Form.Group controlId="formPassword" className="mt-3">
+          <Form.Group controlId="formBasicPassword" className="mt-3">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
               placeholder="Password"
-              name="password"
-              value={userData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </Form.Group>
