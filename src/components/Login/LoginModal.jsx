@@ -1,19 +1,40 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../api/api';
 
 function LoginModal({ show, handleClose }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+
+  const resetForm = () => {
+    setUsername('');
+    setPassword('');
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Username:', username);
-    console.log('Password:', password);
+    try {
+      const response = await loginUser({ username, password });
+      console.log(response.message);
+      resetForm();
+      handleClose();
+      navigate('/cargo');
+    } catch (error) {
+      console.error('Login failed:', error);
+      alert(error);
+    }
+  };
+
+  const handleModalClose = () => {
+    resetForm();
     handleClose();
   };
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={handleModalClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>Login</Modal.Title>
       </Modal.Header>

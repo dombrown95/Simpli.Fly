@@ -11,7 +11,7 @@ function GettingStarted({ onRegisterClick, onLoginClick }) {
       <ol>
         <li>Click the register button.</li>
         <li>Enter a unique username and password.</li>
-        <li>Select your cargo size and get going!</li>
+        <li>Log in and select your cargo size and get going!</li>
       </ol>
       <div className="d-flex justify-content-center gap-3 mt-4">
         <button className="btn btn-primary btn-lg custom-btn" onClick={onRegisterClick}>Register</button>

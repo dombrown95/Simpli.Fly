@@ -24,9 +24,9 @@ function NavBar() {
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/">Home</Nav.Link>
             <Nav.Link as={Link} to="/cargo">Inventory Management</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/action1">Action</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/action2">Another action</NavDropdown.Item>
+            <NavDropdown title="Account" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/action1">Register</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/action2">Login</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/action3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item as={Link} to="/action4">Separated link</NavDropdown.Item>
