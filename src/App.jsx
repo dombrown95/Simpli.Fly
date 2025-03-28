@@ -1,23 +1,18 @@
-import react from "react"
-import { useState } from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import './App.css'
+import CargoPage from './pages/CargoPage';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <Router>
-      <div>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-        </Routes>
-      </div>
-    </Router>
+    <div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/cargo" element={<CargoPage />} />
+      </Routes>
+    </div>
   );
 }
 
-export default App
+export default App;
