@@ -46,11 +46,11 @@ function HomePage() {
       <NavBar />
       <Hero />
       <div className="container my-3">
-        <div className="row">
-          <div className="col-md-6">
+        <div className="row gx-4 align-items-stretch d-flex">
+          <div className="col-md-6 d-flex">
             <AboutUs />
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 d-flex">
             <GettingStarted />
           </div>
         </div>
@@ -64,8 +64,7 @@ function HomePage() {
         {cargoType && (
           <section className="container mt-4">
             <div className="row justify-content-center align-items-start">
-              
-              {/* Left column for inventory form */}
+
               <div className="col-md-6 mb-4">
                 <InventoryForm
                   onAddItem={handleAddItem}
@@ -77,7 +76,6 @@ function HomePage() {
                 />
               </div>
 
-              {/* Right column for cargo summary */}
               <div className="col-md-6 mb-4">
                 <div className="item-form">
                   <h5>Current Cargo Weight: {currentWeight}kg / {cargoLimit}kg</h5>
