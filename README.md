@@ -4,7 +4,7 @@ Simpli.Fly is a lightweight, full-stack inventory management system (IMS) that a
 
 ## Table of Contents
 
-- [Features] (#features)
+- [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Tech Stack](#tech-stack)
@@ -27,8 +27,8 @@ Simpli.Fly is a lightweight, full-stack inventory management system (IMS) that a
 
 1. Clone the repository
 
-`git clone https://github.com/dombrown95/Simpli.Fly.git`
-`cd simpli-fly-ims`
+`git clone https://github.com/dombrown95/Simpli.Fly.git`</br>
+`cd Simpli.Fly`
 
 2. Install dependencies
 
@@ -38,10 +38,14 @@ Simpli.Fly is a lightweight, full-stack inventory management system (IMS) that a
 
 1. Start the backend server
 
-`cd backend`
+In one terminal window/tab, run:
+
+`cd backend`</br>
 `node server.js`
 
 2. Start the frontend
+
+In another terminal window/tab, run:
 
 `npm run dev`
 
@@ -51,7 +55,7 @@ http://localhost:5173
 
 ## Tech Stack
 
-The following tech stack was used during development of the IMS
+The following tech stack was used during development of the IMS:
 
 - Frontend: React, Vite
 - Backend: Node.js, Express
