@@ -81,74 +81,76 @@ function CargoPage() {
 
   return (
     <div>
-      <NavBar />
-      <Hero />
+      <div style={{ width: '100vw', maxWidth: '100%', margin: 0, padding: 0 }}>
+        <NavBar />
+        <Hero />
 
-      {username && (
-        <div className="text-center my-3">
-          <h5 className="text-success">Logged in as: {username}</h5>
-        </div>
-      )}
+        {username && (
+          <div className="text-center my-3">
+            <h5 className="text-success">Logged in as: {username}</h5>
+          </div>
+        )}
 
-      <CargoSelector
-        selectedCargo={cargoType}
-        onSelectCargo={handleCargoSelect}
-      />
+        <CargoSelector
+          selectedCargo={cargoType}
+          onSelectCargo={handleCargoSelect}
+        />
 
-      {cargoType && (
-        <section className="container mt-4">
-          <div className="row justify-content-center align-items-start">
-            <div className="col-md-6 mb-4">
-              <InventoryForm
-                onAddItem={handleAddItem}
-                onUpdateItem={handleUpdateItem}
-                editingItem={editingItem}
-                setEditingItem={setEditingItem}
-                cargoLimit={cargoLimit}
-                currentWeight={currentWeight}
-              />
-            </div>
-            <div className="col-md-6 mb-4">
-              <div className="item-form">
-                <h5>
-                  Current Cargo Weight: {currentWeight}kg / {cargoLimit}kg
-                </h5>
-                <ul className="list-group mt-3">
-                  {items.map((item) => (
-                    <li
-                      key={item.id}
-                      className="list-group-item d-flex justify-content-between align-items-start"
-                    >
-                      <div>
-                        <strong>{item.name}</strong>
-                        {item.description && (
-                          <div className="text-muted">{item.description}</div>
-                        )}
-                        <div className="text-muted small">{item.weight}kg</div>
-                      </div>
-                      <div className="d-flex gap-2">
-                        <button
-                          className="btn btn-sm btn-outline-primary"
-                          onClick={() => handleEditItem(item)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="btn btn-sm btn-outline-danger"
-                          onClick={() => handleDeleteItem(item.id)}
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+        {cargoType && (
+          <section className="container mt-4">
+            <div className="row justify-content-center align-items-start">
+              <div className="col-md-6 mb-4">
+                <InventoryForm
+                  onAddItem={handleAddItem}
+                  onUpdateItem={handleUpdateItem}
+                  editingItem={editingItem}
+                  setEditingItem={setEditingItem}
+                  cargoLimit={cargoLimit}
+                  currentWeight={currentWeight}
+                />
+              </div>
+              <div className="col-md-6 mb-4">
+                <div className="item-form">
+                  <h5>
+                    Current Cargo Weight: {currentWeight}kg / {cargoLimit}kg
+                  </h5>
+                  <ul className="list-group mt-3">
+                    {items.map((item) => (
+                      <li key={item.id}
+                        className="list-group-item d-flex justify-content-between align-items-center">
+                        <div className="d-flex flex-column flex-md-row justify-content-between align-items-start w-100">
+                          <div className="me-3">
+                            <strong>{item.name}</strong>
+                            <div className="text-muted small">{item.weight}kg</div>
+                          </div>
+
+                          {item.description && (<div className="text-muted me-3">{item.description}</div>)}
+
+                          <div className="d-flex gap-2">
+                            <button
+                              className="btn btn-sm btn-outline-primary"
+                              onClick={() => handleEditItem(item)}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="btn btn-sm btn-outline-danger"
+                              onClick={() => handleDeleteItem(item.id)}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      )}
-      <Footer />
+          </section>
+        )}
+        <Footer />
+      </div>
     </div>
   );
 }

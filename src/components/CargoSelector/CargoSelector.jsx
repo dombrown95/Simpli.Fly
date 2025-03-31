@@ -24,7 +24,7 @@ function CargoSelector({ selectedCargo, onSelectCargo }) {
   ];
 
   return (
-    <div className="container text-center py-4 cargo-selector">
+    <div className="container text-center py-3 cargo-selector">
       <h3>Please select your cargo size:</h3>
       <div className="row justify-content-center mt-4">
         {options.map((option) => (
