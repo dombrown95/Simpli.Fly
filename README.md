@@ -23,6 +23,20 @@ Simpli.Fly is a lightweight, full-stack inventory management system (IMS) that a
 - Local storage of login session. 
 - API endpoints for full CRUD (Create, Read, Update and Delete) support.
 
+## Screenshots
+
+### Home Page and Login
+![Home Page](/public/assets/images/home-page.png)
+_A user can log in or register to access the inventory system._
+
+### Cargo Management
+![Cargo Page](/public/assets/images/cargo-page.png)
+_Users can select a cargo size and view or manage their inventory._
+
+### Add Inventory Item
+![Add Item](/public/assets/images/cargo-manage.png)
+_Example of adding a new item and updating the cargo weight display._
+
 ## Installation
 
 1. Clone the repository
